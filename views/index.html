@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Mongoose</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="https://image.flaticon.com/icons/svg/25/25619.svg" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	 crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	 crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	 crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<!-- <script src="/static/js/postrequest.js"></script> -->
+	<style>
+		body {
+			background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://mcarsstatic.cachefly.net/img/common/social-media/2019-Mitsubishi-Full-Line.jpg");
+			background-size: cover;
+		}
+
+		.container {
+			max-width: 1100px;
+			padding: 20px;
+		}
+
+		.form-control {
+			width: 200px;
+		}
+
+		.center {
+			font-size: 15px;
+		}
+
+		#center {
+			background-color: white;
+			margin-top: 240px;
+			width: 480px;
+			margin-left: 300px;
+			margin-right: 300px;
+			border: 1px solid white;
+			border-radius: 10px;
+			box-shadow: -1px 1px 8px 6px #8888;
+		}
+
+		#First {
+			margin-top: 277px;
+    		margin-left: 352px;
+		}
+
+		h1 {
+			color: white;
+			text-shadow: 2px 2px 4px #000000;
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+		}
+
+		table {
+			margin-top: -8px;
+			width: 600px !important;
+			background: white !important;
+		}
+
+		#title {
+			background-color: white;
+			border: 1px solid white;
+			padding: 20px;
+			margin-left: 340px;
+			margin-right: 340px;
+		}
+
+		#updateForm {
+			background-color: white;
+			border: 1px solid white;
+			padding: 20px;
+			margin-top: -356px;
+			margin-left: 550px;
+			margin-right: 550px;
+			border-radius: 8px;
+			box-shadow: -1px 1px 8px 6px #8888;
+		}
+		#TableGrocery{
+			margin-top: -43px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="First">
+		<button type="button" class="btn btn-primary" id="add">Add Car</button>
+	</div>
+	<center>
+		<div id="center">
+			<div class="container">
+				<div class="col-sm-5">
+					<h3>Add Car</h3>
+					<br>
+					<div>
+						<div id="userForm">
+							<div class="form-group">
+								<label for="name">Car Brand:</label>
+								<input type="text" class="form-control" name="carBrand" id="brand" placeholder="Enter Car Brand" />
+							</div>
+							<div class="form-group">
+								<label for="name">Car Model:</label>
+								<input type="text" class="form-control" name="carModel" id="model" placeholder="Enter Car Model" />
+							</div>
+							<div class="form-group">
+								<label for="quantity">Year:</label>
+								<input type="number" class="form-control" name="carYear" id="year" placeholder="Enter Year" />
+							</div>
+							<div class="form-group">
+								<label for="priority">Price:</label>
+								<input type="number" class="form-control" name="carPrice" id="price" placeholder="Enter Price " />
+							</div>
+							<button type="submit" class="btn btn-primary" id="btnAdd">Add Car</button>
+						</div>
+					</div>
+					<div id="postResultDiv">
+					</div>
+					<br>
+				</div>
+			</div>
+		</div><br><br><br>
+		<div id="TableCar">
+			<h1 id="title">Car List</h1>
+			<table class="table" id="tableCar">
+				<thead class="thead-light">
+					<tr>
+						<th id="thBrand" scope="col">Car Brand</th>
+						<th id="thModel" scope="col">Car Model</th>
+						<th id="thYear" scope="col">Car Year</th>
+						<th id="thPrice" scope="col">Car Price</th>
+						<th id="thActions" scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</center>
+	<!-- Modal -->
+	<div id="modal">
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+		 aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Update Item</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" id="modalUpdate">
+						<form>
+							<div class="form-group">
+								<span>Item</span><input type="text" name="updateName" class="form-control" id="updateName" placeholder="Enter Item Name">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" name="updateQuantity" id="updateQuan" placeholder="Enter Item Quantity">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" name="updatePriority" id="updatePrio" placeholder="Enter Item Priority">
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal" id="btnUpdated">Update Item</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/js/usersRequests.js"></script>
+</body>
+<script>
+	$(document).ready(function () {
+		$('#center').hide();
+		$('#add').click(function () {
+			$('#First').hide();
+			$('#center').show();
+			$('#TableCar').hide()
+			$('#btnAdd').click(function () {
+				$('#center').hide();
+				$('#First').show()
+				$('#TableCar').show()
+
+			});
+		})
+
+	})
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+</html>

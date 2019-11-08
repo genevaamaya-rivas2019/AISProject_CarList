@@ -19,9 +19,10 @@ $(document).ready(function () {
     function addRow(item) {
         var tr = $("<tr>", {
             id: item._id,
-            name: item.name,
-            quan: item.quan,
-            prio: item.prio
+            brand: item.brand,
+            model: item.model,
+            year: item.year,
+            price:item.price
         });
         var btns = $("<div>").append($("<button>", {
             class: "btn btn-primary update btn-sm up",
@@ -36,14 +37,17 @@ $(document).ready(function () {
         )
         $(tr).append(
             $("<td>", {
-                class: "forName"
-            }).text(item.name),
+                class: "forBrand"
+            }).text(item.brand),
             $("<td>", {
-                class: "forQuan"
-            }).text(item.quan),
+                class: "forModel"
+            }).text(item.model),
             $("<td>", {
-                class: "forPrio"
-            }).text(item.prio),
+                class: "forYear"
+            }).text(item.year),
+            $("<td>", {
+                class: "forPrice"
+            }).text(item.price),
             $("<td>").append(btns)
         ).appendTo($('tbody'))
     }

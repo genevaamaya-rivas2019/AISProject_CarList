@@ -31,7 +31,7 @@ $(document).ready(function () {
             id: "update_" + item._id,
         }).text("update"),
             $("<button>", {
-                class: "btn btn-danger del btn-sm",
+                class: "btn btn-warning del btn-sm",
                 id: "delete_" + item._id,
             }).text("delete")
         )
@@ -57,10 +57,10 @@ $(document).ready(function () {
     })
 
     $("#btnAdd").click(function () {
-        var validBrand = $('#brand').val();
-        var validModel = $('#model').val()
-        var validYear = $('#year').val()
-        var validPrice = $('#price').val()
+        // var validBrand = $('#brand').val();
+        // var validModel = $('#model').val()
+        // var validYear = $('#year').val()
+        // var validPrice = $('#price').val()
         var valid = true;
         $('.form-control').each(function () {
 

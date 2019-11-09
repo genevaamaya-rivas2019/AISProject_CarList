@@ -5,6 +5,8 @@
 	<title>Mongoose</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="shortcut icon" type="image/x-icon" href="https://image.flaticon.com/icons/svg/25/25619.svg" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	 crossorigin="anonymous">
@@ -15,11 +17,11 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	 crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	
+
 	<!-- <script src="/static/js/postrequest.js"></script> -->
 	<style>
 		body {
-			background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://mcarsstatic.cachefly.net/img/common/social-media/2019-Mitsubishi-Full-Line.jpg");
+			background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://mcarsstatic.cachefly.net/img/common/social-media/2019-Mitsubishi-Full-Line.jpg");
 			background-size: cover;
 		}
 
@@ -37,7 +39,7 @@
 		}
 
 		#center {
-			background-color: white;
+			background-color:aqua;
 			margin-top: 240px;
 			width: 480px;
 			margin-left: 300px;
@@ -48,8 +50,8 @@
 		}
 
 		#First {
-			margin-top: 277px;
-    		margin-left: 352px;
+			margin-top: 150px;
+    		margin-left: 70%;
 		}
 
 		h1 {
@@ -60,16 +62,18 @@
 
 		table {
 			margin-top: -8px;
-			width: 600px !important;
+			width: 700px !important;
 			background: white !important;
 		}
 
 		#title {
 			background-color: white;
+			color:sandybrown;
 			border: 1px solid white;
 			padding: 20px;
-			margin-left: 340px;
-			margin-right: 340px;
+			margin-left: 250px;
+			margin-right: 250px;
+			font-size: 50px;
 		}
 
 		#updateForm {
@@ -85,12 +89,26 @@
 		#TableGrocery{
 			margin-top: -43px;
 		}
+		.card {
+			box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+			transition: 0.3s;
+			width: 60%;
+			border-radius: 20px;
+		}
+
+		.card:hover {
+			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+		}
+		th{
+			background-color:aqua !important;
+		}
+
 	</style>
 </head>
 
 <body>
 	<div id="First">
-		<button type="button" class="btn btn-primary" id="add">Add Car</button>
+		<button type="button" class="btn btn-info" id="add">Add Car</button>
 	</div>
 	<center>
 		<div id="center">
@@ -100,22 +118,30 @@
 					<br>
 					<div>
 						<div id="userForm">
-							<div class="form-group">
-								<label for="name">Car Brand:</label>
-								<input type="text" class="form-control" name="carBrand" id="brand" placeholder="Enter Car Brand" />
-							</div>
-							<div class="form-group">
-								<label for="name">Car Model:</label>
-								<input type="text" class="form-control" name="carModel" id="model" placeholder="Enter Car Model" />
-							</div>
-							<div class="form-group">
-								<label for="quantity">Year:</label>
-								<input type="number" class="form-control" name="carYear" id="year" placeholder="Enter Year" />
-							</div>
-							<div class="form-group">
-								<label for="priority">Price:</label>
-								<input type="number" class="form-control" name="carPrice" id="price" placeholder="Enter Price " />
-							</div>
+							<div class="input-group md-form form-sm form-1 pl-0">
+								<div class="input-group-prepend">
+									<span class="input-group-text purple lighten-3" id="basic-text1"><i class='fas fa-car'></i></span>
+								</div>
+								<input class="form-control my-0 py-1" type="text" placeholder="Enter Brand" id="brand" name="carBrand">
+							</div><br><br>
+							<div class="input-group md-form form-sm form-1 pl-0">
+								<div class="input-group-prepend">
+									<span class="input-group-text purple lighten-3" id="basic-text1"><i class='fas fa-car-alt'></i></span>
+								</div>
+								<input class="form-control my-0 py-1" type="text" placeholder="Enter Model" id="model" name="carModel">
+							</div><br><br>
+							<div class="input-group md-form form-sm form-1 pl-0">
+								<div class="input-group-prepend">
+									<span class="input-group-text purple lighten-3" id="basic-text1"><i class='far fa-calendar-alt'></i></span>
+								</div>
+								<input class="form-control my-0 py-1" type="text" placeholder="Enter Year" id="year" name="carYear">
+							</div><br><br>
+							<div class="input-group md-form form-sm form-1 pl-0">
+								<div class="input-group-prepend">
+									<span class="input-group-text purple lighten-3" id="basic-text1"><i class='fa fa-money'></i></span>
+								</div>
+								<input class="form-control my-0 py-1" type="text" placeholder="Enter Price" id="price" name="carPrice">
+							</div><br><br>
 							<button type="submit" class="btn btn-primary" id="btnAdd">Add Car</button>
 						</div>
 					</div>
@@ -124,22 +150,24 @@
 					<br>
 				</div>
 			</div>
-		</div><br><br><br>
-		<div id="TableCar">
-			<h1 id="title">Car List</h1>
-			<table class="table" id="tableCar">
-				<thead class="thead-light">
-					<tr>
-						<th id="thBrand" scope="col">Car Brand</th>
-						<th id="thModel" scope="col">Car Model</th>
-						<th id="thYear" scope="col">Car Year</th>
-						<th id="thPrice" scope="col">Car Price</th>
-						<th id="thActions" scope="col">Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-				</tbody>
-			</table>
+		</div><br>
+		<div class="card">
+			<div id="TableCar">
+				<h1 id="title">Car List</h1>
+				<table class="table table-striped" id="tableCar">
+					<thead class="thead-light">
+						<tr>
+							<th id="thBrand" scope="col">Car Brand</th>
+							<th id="thModel" scope="col">Car Model</th>
+							<th id="thYear" scope="col">Car Year</th>
+							<th id="thPrice" scope="col">Car Price</th>
+							<th id="thActions" scope="col">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</center>
 	<!-- Modal -->

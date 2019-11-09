@@ -22,7 +22,7 @@ $(document).ready(function () {
             brand: item.brand,
             model: item.model,
             year: item.year,
-            price:item.price
+            price: item.price
         });
         var btns = $("<div>").append($("<button>", {
             class: "btn btn-primary update btn-sm up",
@@ -57,34 +57,46 @@ $(document).ready(function () {
     })
 
     $("#btnAdd").click(function () {
-        var validName = $('#name').val();
-        var validNumber = $('#quantity').val()
-        var validPrio = $('#priority').val()
+        var validBrand = $('#brand').val();
+        var validModel = $('#model').val()
+        var validYear = $('#year').val()
+        var validPrice = $('#price').val()
         var valid = true;
         $('.form-control').each(function () {
 
 
-            if (!$("#name").val()) {
+            if (!$("#brand").val()) {
                 valid = false;
                 Swal.fire({
                     type: 'error',
-                    title: 'Name should be filled!!',
+                    title: 'Brand should be filled!!',
                     showConfirmButton: false,
                     timer: 1000
                 })
-            } else if (!$("#quantity").val()) {
+            } else if (!$("#model").val()) {
                 valid = false;
                 Swal.fire({
                     type: 'error',
-                    title: 'Quantity should be filled!!',
+                    title: 'Model should be filled!!',
                     showConfirmButton: false,
                     timer: 1000
                 })
-            } else if (!$("#priority").val()) {
+            } else if (!$("#year").val()) {
                 valid = false;
                 Swal.fire({
                     type: 'error',
-                    title: 'Priority should be filled!!',
+                    title: 'Year should be filled!!',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+
+
+            }
+            else if (!$("#price").val()) {
+                valid = false;
+                Swal.fire({
+                    type: 'error',
+                    title: 'Price should be filled!!',
                     showConfirmButton: false,
                     timer: 1000
                 })
@@ -94,9 +106,10 @@ $(document).ready(function () {
         })
         if (valid) {
             var formData = {
-                name: $("#name").val(),
-                quan: $("#quantity").val(),
-                prio: $("#priority").val()
+                brand: $("#brand").val(),
+                model: $("#model").val(),
+                year: $("#year").val(),
+                price: $("#price").val()
             }
 
             $.ajax({
@@ -134,9 +147,10 @@ $(document).ready(function () {
 
     $(document).on("click", ".del", function () {
         var formData = {
-            name: $("#name").val(),
-            quan: $("#quantity").val(),
-            prio: $("#priority").val()
+            brand: $("#brand").val(),
+            model: $("#model").val(),
+            year: $("#year").val(),
+            price: $("#price").val()
         }
         var id = $(this).attr('id').split('_')
         $.ajax({
@@ -162,9 +176,10 @@ $(document).ready(function () {
     $("#btnUpdated").click(function () {
         var key = $(this).attr("key");
         var data = {
-            "name": $('#updateName').val(),
-            "quan": $('#updateQuan').val(),
-            "prio": $('#updatePrio').val()
+            "brand": $('#updateBrand').val(),
+            "model": $('#updateModel').val(),
+            "year" : $('#updateYear').val(),
+            "price" : $('#updatePrice').val()
         }
         updateItem(key, data)
     })
@@ -181,9 +196,11 @@ $(document).ready(function () {
                 newData: newData
             },
             success: function (data) {
-                $('#'+data._id +" td.forName").text(data.name)
-                $('#'+data._id +" td.forQuan").text(data.quan)
-                $('#'+data._id +" td.forPrio").text(data.prio)
+                $('#' + data._id + " td.forBrand").text(data.brand)
+                $('#' + data._id + " td.forModel").text(data.model)
+                $('#' + data._id + " td.forYear").text(data.year)
+                $('#' + data._id + " td.forPrice").text(data.price)
+
             },
             error: function (e) {
                 console.log(e);
@@ -197,9 +214,10 @@ $(document).ready(function () {
             crossDomain: true,
             success: function (data) {
                 console.log(data)
-                $('#updateName').val(data.name);
-                $('#updateQuan').val(data.quan);
-                $('#updatePrio').val(data.prio);
+                $('#updateBrand').val(data.brand);
+                $('#updateModel').val(data.model);
+                $('#updateYear').val(data.year);
+                $('#updatePrice').val(data.price);
                 $("#btnUpdated").attr("key", data._id)
             },
             error: function (e) {

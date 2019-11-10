@@ -50,6 +50,7 @@ exports.delete = (req, res) => {
     });
 }
 exports.update = (res, alldata) => {
+    // console.log(alldata);
     // Find note and update it with the request body
     User.findByIdAndUpdate(alldata.id, alldata.newData, { new: true })
         .then(items => {

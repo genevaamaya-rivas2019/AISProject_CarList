@@ -2,11 +2,13 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-require('./app/routes/user.route.js')(app);
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(bodyParser.json())
 app.use(express.static('public'))
+
+require('./app/routes/user.route.js')(app);
 
 global.base = __dirname 
 // Configuring the database

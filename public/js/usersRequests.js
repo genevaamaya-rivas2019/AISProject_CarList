@@ -178,18 +178,16 @@ $(document).ready(function () {
         var data = {
             "brand": $('#updateBrand').val(),
             "model": $('#updateModel').val(),
-            "year" : $('#updateYear').val(),
-            "price" : $('#updatePrice').val()
+            "year": $('#updateYear').val(),
+            "price": $('#updatePrice').val()
         }
         updateItem(key, data)
     })
 
     //update Item function
-    function updateItem(id, newData) {
-
+    function updateItem(id, newData) {  
         $.ajax({
             url: "item/update",
-            crossDomain: true,
             type: "put",
             data: {
                 id: id,

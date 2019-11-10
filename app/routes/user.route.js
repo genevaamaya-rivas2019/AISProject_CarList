@@ -39,7 +39,11 @@ module.exports = function (app) {
 
 	app.put('/item/update', (req, res) => {
 		// users.save(req.query,res);	
+		// console.log(req.body);
+		console.log("update : ");
+		
 		console.log(req.body);
+		
 		// users.delete(req,res);
 		// let id = req.params.id;
 		users.update(res, req.body);

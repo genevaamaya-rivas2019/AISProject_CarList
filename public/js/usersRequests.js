@@ -243,7 +243,12 @@ $(document).ready(function () {
                         addRow(car)
                     })
                 } else {
-                    alert("no items found")
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Item not found!!!',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
                 }
 
 

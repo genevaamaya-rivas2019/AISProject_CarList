@@ -24,6 +24,17 @@
         #tableCar {
             width: 100% !important;
         }
+        body {
+			background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://mcarsstatic.cachefly.net/img/common/social-media/2019-Mitsubishi-Full-Line.jpg");
+			background-size: cover;
+            background-repeat: no-repeat;
+		}
+        #First {
+			margin-top: 20px;
+			margin-bottom: 20px;
+    		margin-left: 80%;
+		}
+
     </style>
 </head>
 
@@ -52,13 +63,14 @@
             <div class="col">
                 <center>
                     <div class="card">
+                        <div id="First">
+                            <button type="button" class="btn btn-info" id="add">Add Car</button>
+                        </div>
                         <div class="card-header">
                             <h4>Car List</h4>
                         </div>
                         <div class="card-body">
-                            <div id="First">
-                                <button type="button" class="btn btn-info" id="add">Add Car</button>
-                            </div>
+
                             <table class="table table-striped table-responsive-lg" id="tableCar">
                                 <thead class="thead-light">
                                     <tr>
@@ -181,7 +193,7 @@
                 showHide('forModal', "forSearch", 'forTable')
 
             })
-            $("#searchInput").keyup(() => { 
+            $("#searchInput").keyup(() => {
                 var search = $("#searchInput").val().toLowerCase()
                 $("tbody tr").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(search) > -1)

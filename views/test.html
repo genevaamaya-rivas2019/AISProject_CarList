@@ -181,12 +181,12 @@
                 showHide('forModal', "forSearch", 'forTable')
 
             })
-            // $("#searchInput").keypress(() => {
-            //     var search = $(this).val();
-            //     $("#myTable tr").filter(function () {
-            //         $(this).toggle($(this).text().indexOf(search) > -1)
-            //     });
-            // })
+            $("#searchInput").keyup(() => { 
+                var search = $("#searchInput").val().toLowerCase()
+                $("tbody tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(search) > -1)
+                });
+            })
 
             // $("#searchBtn").click(() => {
             //     var search = $(this).val();

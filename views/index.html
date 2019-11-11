@@ -40,7 +40,7 @@
 
 		#center {
 			background-color:aqua;
-			margin-top: 240px;
+			margin-top: 140px;
 			width: 480px;
 			margin-left: 300px;
 			margin-right: 300px;
@@ -50,7 +50,7 @@
 		}
 
 		#First {
-			margin-top: 80px;
+			margin-top: 70px;
     		margin-left: 70%;
 		}
 
@@ -86,9 +86,6 @@
 			border-radius: 8px;
 			box-shadow: -1px 1px 8px 6px #8888;
 		}
-		#TableGrocery{
-			margin-top: -43px;
-		}
 		.card {
 			box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 			transition: 0.3s;
@@ -115,9 +112,9 @@
 			<!-- <div class="input-group-prepend">
 			<span class="input-group-text cyan lighten-2" style="background-color: aqua"  id="basic-text1"><i class="fas fa-search text-white" aria-hidden="true"></i></span>
 		</div> -->
-			<input class="form-control my-0 py-1" type="text" id="searchInput" placeholder="Search" aria-label="Search">
-			<button class="input-group-text cyan lighten-2" id="searchBtn" style="background-color: aqua" id="basic-text1"><i class="fas fa-search text-white"
-				 aria-hidden="true"></i></button>
+			<input class="form-control my-0 py-1" type="text" id="searchInput" placeholder="Search a Car" aria-label="Search">
+			<button class="input-group-text cyan lighten-2" id="searchBtn" style="background-color: aqua" id="basic-text1"><i
+				 class="fas fa-search text-white" aria-hidden="true"></i></button>
 		</div>
 	</center>
 
@@ -165,24 +162,34 @@
 				</div>
 			</div>
 		</div><br>
-		<div class="card">
-			<div id="TableCar">
-				<h1 id="title">Car List</h1>
-				<table class="table table-striped" id="tableCar">
-					<thead class="thead-light">
-						<tr>
-							<th id="thBrand" scope="col">Car Brand</th>
-							<th id="thModel" scope="col">Car Model</th>
-							<th id="thYear" scope="col">Car Year</th>
-							<th id="thPrice" scope="col">Car Price</th>
-							<th id="thActions" scope="col">Actions</th>
-						</tr>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
+		<div class="row">
+			<div class="col">
+				<center>
+					<div class="card">
+						<div class="card-body">
+							<div id="TableCar">
+								<h1 id="title">Car List</h1>
+								<table class="table table-striped" id="tableCar">
+									<thead class="thead-light">
+										<tr>
+											<th id="thBrand" scope="col">Car Brand</th>
+											<th id="thModel" scope="col">Car Model</th>
+											<th id="thYear" scope="col">Car Year</th>
+											<th id="thPrice" scope="col">Car Price</th>
+											<th id="thActions" scope="col">Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+					</div>
+				</center>
 			</div>
 		</div>
+
 	</center>
 	<!-- Modal -->
 	<div id="modal">

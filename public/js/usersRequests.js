@@ -237,11 +237,15 @@ $(document).ready(function () {
             type: "put",
             crossDomain: true,
             success: function (data) {
-                console.log(data)
-                $("tbody").empty();
-                data.forEach(car => {
-                    addRow(car)
-                })
+                if (data.length != 0) {
+                    $("tbody").empty();
+                    data.forEach(car => {
+                        addRow(car)
+                    })
+                } else {
+                    alert("no items found")
+                }
+
 
             },
             error: function (e) {

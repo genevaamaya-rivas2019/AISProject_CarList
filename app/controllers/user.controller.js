@@ -41,7 +41,7 @@ exports.findOne = (res, id) => {
 
 exports.searchOne = (res, brandname) => {
     var res = res;
-    User.find({brand:brandname}, function (err, items) {
+    User.find({ brand: { $regex: new RegExp(brandname, "i") } }, function (err, items) {
         if (err) {
             res.json(err);
         } else {
@@ -56,7 +56,7 @@ exports.delete = (req, res) => {
             console.log('deleted..')
         } else {
             console.log('Success')
-//             added response -yol
+            //             added response -yol
             res.send("deleted");
         }
     });
@@ -70,19 +70,19 @@ exports.update = (res, alldata) => {
                 res.status(404).send({
                     message: "Note not found with id " + alldata.id
                 });
-            }else{
-//                 added else -yol
-            res.send(items);
-            
+            } else {
+                //                 added else -yol
+                res.send(items);
+
             }
         }).catch(err => {
             console.log(err)
             if (err.kind === 'ObjectId') {
-                 res.status(404).send({
+                res.status(404).send({
                     message: "Note not found with id " + alldata.id
                 });
             }
-             res.status(500).send({
+            res.status(500).send({
                 message: "Error updating note with id " + alldata.id
             });
         });

@@ -49,6 +49,12 @@ module.exports = function (app) {
 		users.update(res, req.body);
 	});
 
+	app.put('/item/search/:id',(req, res) =>{
+		console.log("Search...........")
+		console.log(req.params.id)
+		users.searchOne(res, req.params.id)
+	})
+
 	app.get("*", (req, res) => {
 		res.sendFile("views/404.html");
 	});

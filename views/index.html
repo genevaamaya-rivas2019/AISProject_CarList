@@ -50,7 +50,7 @@
 		}
 
 		#First {
-			margin-top: 150px;
+			margin-top: 80px;
     		margin-left: 70%;
 		}
 
@@ -102,11 +102,25 @@
 		th{
 			background-color:aqua !important;
 		}
+		.search{
+			width:50%;
+		}
 
 	</style>
 </head>
 
-<body>
+<body><br><br><br><br>
+	<center>
+		<div class="input-group md-form form-sm form-1 pl-0 search">
+			<!-- <div class="input-group-prepend">
+			<span class="input-group-text cyan lighten-2" style="background-color: aqua"  id="basic-text1"><i class="fas fa-search text-white" aria-hidden="true"></i></span>
+		</div> -->
+			<input class="form-control my-0 py-1" type="text" id="searchInput" placeholder="Search" aria-label="Search">
+			<button class="input-group-text cyan lighten-2" id="searchBtn" style="background-color: aqua" id="basic-text1"><i class="fas fa-search text-white"
+				 aria-hidden="true"></i></button>
+		</div>
+	</center>
+
 	<div id="First">
 		<button type="button" class="btn btn-info" id="add">Add Car</button>
 	</div>
@@ -215,11 +229,12 @@
 			$('#First').hide();
 			$('#center').show();
 			$('#TableCar').hide()
+			$('.search').hide();
 			$('#btnAdd').click(function () {
 				$('#center').hide();
 				$('#First').show()
 				$('#TableCar').show()
-
+				$('.search').show();
 			});
 		})
 

@@ -126,6 +126,7 @@ $(document).ready(function () {
                         showConfirmButton: false,
                         timer: 1500
                     })
+                    retrieveItems();
                     addRow(result)
                     $("#getResultDiv").html("<strong>Success!</strong>");
                     $('input').val("")
@@ -184,8 +185,14 @@ $(document).ready(function () {
         updateItem(key, data)
     })
 
+    $("#searchBtn").click(function () {
+        var updateBrand = $("#searchInput").val();
+        searchedItem(updateBrand);
+        $("#searchInput").val("");
+    })
+
     //update Item function
-    function updateItem(id, newData) {  
+    function updateItem(id, newData) {
         $.ajax({
             url: "item/update",
             type: "put",
@@ -217,6 +224,25 @@ $(document).ready(function () {
                 $('#updateYear').val(data.year);
                 $('#updatePrice').val(data.price);
                 $("#btnUpdated").attr("key", data._id)
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        })
+    }
+
+    function searchedItem(brand) {
+        $.ajax({
+            url: "item/search/" + brand,
+            type: "put",
+            crossDomain: true,
+            success: function (data) {
+                console.log(data)
+                $("tbody").empty();
+                data.forEach(car => {
+                    addRow(car)
+                })
+
             },
             error: function (e) {
                 console.log(e);

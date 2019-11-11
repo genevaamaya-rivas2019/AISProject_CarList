@@ -38,6 +38,18 @@ exports.findOne = (res, id) => {
         }
     });
 };
+
+exports.searchOne = (res, brandname) => {
+    var res = res;
+    User.find({brand:brandname}, function (err, items) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(items);
+        }
+    });
+};
+
 exports.delete = (req, res) => {
     User.findByIdAndRemove({ _id: req.params.id }, (err, doc) => {
         if (!err) {

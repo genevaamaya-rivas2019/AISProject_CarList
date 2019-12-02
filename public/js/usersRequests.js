@@ -52,9 +52,7 @@ $(document).ready(function () {
         ).appendTo($('tbody'))
     }
 
-    $(document).on("click", ".del", function () {
-        $(this).parent().parent().parent().fadeOut("slow")
-    })
+
 
     $("#btnAdd").click(function () {
         // var validBrand = $('#brand').val();
@@ -147,42 +145,77 @@ $(document).ready(function () {
     })
 
     $(document).on("click", ".del", function () {
-        var formData = {
-            brand: $("#brand").val(),
-            model: $("#model").val(),
-            year: $("#year").val(),
-            price: $("#price").val()
-        }
-        var id = $(this).attr('id').split('_')
-        $.ajax({
-            url: "/item/delete/" + id[1],
-            crossDomain: true,
-            data: formData,
-            success: function (result) {
-                console.log('Success!!')
-                console.log(data);
-            },
-            error: function (e) {
-                console.log("ERROR: ", e);
+        Swal.fire({
+            title: 'Are you sure?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                var formData = {
+                    brand: $("#brand").val(),
+                    model: $("#model").val(),
+                    year: $("#year").val(),
+                    price: $("#price").val()
+                }
+                var id = $(this).attr('id').split('_')
+                $.ajax({
+                    url: "/item/delete/" + id[1],
+                    crossDomain: true,
+                    data: formData,
+                    success: function (result) {
+                        console.log('Success!!')
+                        console.log(data);
+                    },
+                    error: function (e) {
+                        console.log("ERROR: ", e);
+                    }
+                });
+                $(this).parent().parent().parent().fadeOut("slow")
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+
             }
-        });
+        })
     })
 
     $(document).on("click", ".update", function () {
         var updateId = $(this).parent().parent().parent().attr("id");
+        localStorage.setItem("value", updateId)
         retrieveOneItem(updateId)
-
     })
 
     $("#btnUpdated").click(function () {
         var key = $(this).attr("key");
-        var data = {
+        var data1 = {
             "brand": $('#updateBrand').val(),
             "model": $('#updateModel').val(),
             "year": $('#updateYear').val(),
             "price": $('#updatePrice').val()
         }
-        updateItem(key, data)
+        $.ajax({
+            url: "item/retrieve/" + localStorage.getItem("value"),
+            crossDomain: true,
+            success: function (data) {
+                console.log(data)
+                console.log(data.brand)
+                if($('#updateBrand').val() == data.brand && $('#updateModel').val() == data.model && 
+                $('#updateYear').val() == data.year && $('#updatePrice').val() == data.price){
+                    Swal.fire('Nothing has been changed!!!')
+                }else{
+                    updateItem(key, data1)
+                    Swal.fire('Saved Changes')
+                }
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        })
     })
 
     $("#searchBtn").click(function () {

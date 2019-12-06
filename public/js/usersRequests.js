@@ -52,8 +52,6 @@ $(document).ready(function () {
         ).appendTo($('tbody'))
     }
 
-
-
     $("#btnAdd").click(function () {
         // var validBrand = $('#brand').val();
         // var validModel = $('#model').val()
@@ -71,6 +69,7 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 1000
                 })
+                $('input').val("");
             } else if (!$("#model").val()) {
                 valid = false;
                 Swal.fire({
@@ -79,6 +78,7 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 1000
                 })
+                $('input').val("");
             } else if (!$("#year").val()) {
                 valid = false;
                 Swal.fire({
@@ -87,6 +87,7 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 1000
                 })
+                $('input').val("");
 
 
             }
@@ -98,6 +99,7 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 1000
                 })
+                $('input').val("");
 
 
             }
@@ -144,14 +146,33 @@ $(document).ready(function () {
         retrieveItems(id)
     })
 
+    //back to table
+    $(document).on("click", "#btnRetrieve", function () {
+        $('input').val("");
+        retrieveItems();
+    })
+    //retrieve all data
+    $(document).on("click", "#retrieve", function () {
+        retrieveItems();
+    })
+
+
     $(document).on("click", ".del", function () {
-        Swal.fire({
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+        swalWithBootstrapButtons.fire({
             title: 'Are you sure?',
+            text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
         }).then((result) => {
             if (result.value) {
                 var formData = {
@@ -174,7 +195,7 @@ $(document).ready(function () {
                     }
                 });
                 $(this).parent().parent().parent().fadeOut("slow")
-                Swal.fire(
+                swalWithBootstrapButtons.fire(
                     'Deleted!',
                     'Your file has been deleted.',
                     'success'
@@ -204,10 +225,10 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data)
                 console.log(data.brand)
-                if($('#updateBrand').val() == data.brand && $('#updateModel').val() == data.model && 
-                $('#updateYear').val() == data.year && $('#updatePrice').val() == data.price){
+                if ($('#updateBrand').val() == data.brand && $('#updateModel').val() == data.model &&
+                    $('#updateYear').val() == data.year && $('#updatePrice').val() == data.price) {
                     Swal.fire('Nothing has been changed!!!')
-                }else{
+                } else {
                     updateItem(key, data1)
                     Swal.fire('Saved Changes')
                 }

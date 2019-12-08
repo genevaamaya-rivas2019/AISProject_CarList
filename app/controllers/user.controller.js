@@ -56,7 +56,7 @@ exports.delete = (req, res) => {
             console.log('deleted..')
         } else {
             console.log('Success')
-            //             added response -yol
+            //             added response 
             res.send("deleted");
         }
     });

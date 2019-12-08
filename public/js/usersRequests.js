@@ -52,57 +52,80 @@ $(document).ready(function () {
         ).appendTo($('tbody'))
     }
 
+    function isNumeric(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+
     $("#btnAdd").click(function () {
-        // var validBrand = $('#brand').val();
+        var validBrand = $('#brand').val();
         // var validModel = $('#model').val()
-        // var validYear = $('#year').val()
-        // var validPrice = $('#price').val()
+        var validYear = $('#year').val()
+        var validPrice = $('#price').val()
+
         var valid = true;
         $('.form-control').each(function () {
-
-
-            if (!$("#brand").val()) {
+            let brandmatches = validBrand.match(/\d+/g);
+            if (brandmatches != null) {
                 valid = false;
                 Swal.fire({
                     type: 'error',
-                    title: 'Brand should be filled!!',
+                    title: 'Car Brand should be alphabet letters',
                     showConfirmButton: false,
                     timer: 1000
                 })
                 $('input').val("");
-            } else if (!$("#model").val()) {
-                valid = false;
-                Swal.fire({
-                    type: 'error',
-                    title: 'Model should be filled!!',
-                    showConfirmButton: false,
-                    timer: 1000
-                })
-                $('input').val("");
-            } else if (!$("#year").val()) {
-                valid = false;
-                Swal.fire({
-                    type: 'error',
-                    title: 'Year should be filled!!',
-                    showConfirmButton: false,
-                    timer: 1000
-                })
-                $('input').val("");
-
-
             }
-            else if (!$("#price").val()) {
+            if (!isNumeric(validYear) || !isNumeric(validPrice)) {
                 valid = false;
                 Swal.fire({
                     type: 'error',
-                    title: 'Price should be filled!!',
+                    title: 'Year and Price should be numbers',
                     showConfirmButton: false,
                     timer: 1000
                 })
                 $('input').val("");
-
-
             }
+            if (!$("#brand").val() || !$("#model").val() || !$("#year").val() || !$("#price").val()) {
+                valid = false;
+                Swal.fire({
+                    type: 'error',
+                    title: 'All inputs should be filled!!',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                $('input').val("");
+            }
+            // else if (!$("#model").val()) {
+            //     valid = false;
+            //     Swal.fire({
+            //         type: 'error',
+            //         title: 'All inputs should be filled!!',
+            //         showConfirmButton: false,
+            //         timer: 1000
+            //     })
+            //     $('input').val("");
+            // } else if (!$("#year").val()) {
+            //     valid = false;
+            //     Swal.fire({
+            //         type: 'error',
+            //         title: 'All inputs should be filled!!',
+            //         showConfirmButton: false,
+            //         timer: 1000
+            //     })
+            //     $('input').val("");
+
+
+            // }
+            // else if (!$("#price").val()) {
+            //     valid = false;
+            //     Swal.fire({
+            //         type: 'error',
+            //         title: 'All inputs should be filled!!',
+            //         showConfirmButton: false,
+            //         timer: 1000
+            //     })
+            //     $('input').val("");
+            // }
         })
         if (valid) {
             var formData = {
@@ -197,7 +220,7 @@ $(document).ready(function () {
                 $(this).parent().parent().parent().fadeOut("slow")
                 swalWithBootstrapButtons.fire(
                     'Deleted!',
-                    'Your file has been deleted.',
+                    'The item has been deleted.',
                     'success'
                 )
 
@@ -212,6 +235,11 @@ $(document).ready(function () {
     })
 
     $("#btnUpdated").click(function () {
+        var validBrand = $('#updateBrand').val();
+        // var validModel = $('#updateModel').val()
+        var validYear = $('#updateYear').val()
+        var validPrice = $('#updatePrice').val()
+        var brandmatches = validBrand.match(/\d+/g);
         var key = $(this).attr("key");
         var data1 = {
             "brand": $('#updateBrand').val(),
@@ -228,7 +256,37 @@ $(document).ready(function () {
                 if ($('#updateBrand').val() == data.brand && $('#updateModel').val() == data.model &&
                     $('#updateYear').val() == data.year && $('#updatePrice').val() == data.price) {
                     Swal.fire('Nothing has been changed!!!')
-                } else {
+                } else if (brandmatches != null) {
+                    valid = false;
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Car Brand should be alphabet letters',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                    $('input').val("");
+                }
+                else if (!isNumeric(validYear) || !isNumeric(validPrice)) {
+                    valid = false;
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Year and Price should be numbers',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                    $('input').val("");
+                }
+                else if (!$("#updateBrand").val() || !$("#updateModel").val() || !$("#updateYear").val() || !$("#updatePrice").val()) {
+                    valid = false;
+                    Swal.fire({
+                        type: 'error',
+                        title: 'All inputs should be filled!!',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                    $('input').val("");
+                }
+                else {
                     updateItem(key, data1)
                     Swal.fire('Saved Changes')
                 }
@@ -297,12 +355,12 @@ $(document).ready(function () {
                         addRow(car)
                     })
                 } else {
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Item not found!!!',
-                        showConfirmButton: false,
-                        timer: 1000
-                    })
+                    // Swal.fire({
+                    //     type: 'error',
+                    //     title: 'Item not found!!!',
+                    //     showConfirmButton: false,
+                    //     timer: 1000
+                    // })
                 }
 
 

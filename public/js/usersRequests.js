@@ -75,7 +75,7 @@ $(document).ready(function () {
                 })
                 $('input').val("");
             }
-            if (!isNumeric(validYear) || !isNumeric(validPrice)) {
+            else if (!isNumeric(validYear) || !isNumeric(validPrice)) {
                 valid = false;
                 Swal.fire({
                     type: 'error',
@@ -85,7 +85,7 @@ $(document).ready(function () {
                 })
                 $('input').val("");
             }
-            if (!$("#brand").val() || !$("#model").val() || !$("#year").val() || !$("#price").val()) {
+            else if (!$("#brand").val() || !$("#model").val() || !$("#year").val() || !$("#price").val()) {
                 valid = false;
                 Swal.fire({
                     type: 'error',
@@ -191,7 +191,6 @@ $(document).ready(function () {
         swalWithBootstrapButtons.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
-            icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Yes, delete it!',
             cancelButtonText: 'No, cancel!',

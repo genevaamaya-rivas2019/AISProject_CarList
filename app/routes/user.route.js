@@ -13,7 +13,7 @@ module.exports = function (app) {
 	});
 
 	app.get('/', (req, res) => {
-		res.sendFile(base + '/views/test.html');
+		res.sendFile(__dirname+'/test.html');
 	});
 
 	// Save a User to MongoDB

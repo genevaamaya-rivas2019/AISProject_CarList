@@ -1,12 +1,15 @@
 
 var express = require('express');
 var app = express();
+const cors = require('cors');
+
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json())
 app.use(express.static('public'))
+app.use(cors())
 
 require('./app/routes/user.route.js')(app);
 
@@ -18,7 +21,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 // Connecting to the database
-mongoose.connect(dbConfig.url, { useFindAndModify: false })
+mongoose.connect(dbConfig.url, { useFindAndModify: false, useUnifiedTopology: true,useNewUrlParser: true })
     .then(() => {
         console.log("Successfully connected to MongoDB.");
     }).catch(err => {
